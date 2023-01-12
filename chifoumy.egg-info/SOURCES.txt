@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+chifoumy/__init__.py
+chifoumy/game.py
+chifoumy/video_input.py
+chifoumy.egg-info/PKG-INFO
+chifoumy.egg-info/SOURCES.txt
+chifoumy.egg-info/dependency_links.txt
+chifoumy.egg-info/not-zip-safe
+chifoumy.egg-info/requires.txt
+chifoumy.egg-info/top_level.txt
+tests/__init__.py
