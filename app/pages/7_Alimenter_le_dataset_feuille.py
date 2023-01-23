@@ -2,32 +2,26 @@
 
 import streamlit as st
 from PIL import Image
-import pandas as pd
-import matplotlib.image as mpimg
-import numpy as np
 #-------------------------------------------------------------------------------
 
 from chifoumy.interface.detection import take_a_picture, picture_to_df
-#from include import picture_to_df
-#from chifoumy.interface.detection import picture_to_target
 from chifoumy.interface.utils import create_key
 from chifoumy.ml_logic.registry import load_pipeline
 
 #===============================================================================
 
-IMAGE_PATH = "data_images/pierre/"
+IMAGE_PATH = "data_images/feuille/"
 
 #===============================================================================
 
-html_title = "<h1 style='color:#FF036A'>Alimentons le dataset « pierre » !</h1>"
+html_title = "<h1 style='color:#FF036A'>Alimentons le dataset « feuille » !</h1>"
 st.markdown(html_title, unsafe_allow_html=True)
 
 #-------------------------------------------------------------------------------
-# NEW CODE
 
 picture = None
 picture = take_a_picture(key=6453)
-#picture = take_a_picture()
+
 if picture:
     button1 = st.button("Sauvegarder la photo", key=1)
     if button1:
@@ -36,14 +30,12 @@ if picture:
             st.write("Problème dans l'acquisition photo.")
         else:
             st.write("✅ Acquisition photo OK")
-            #st.write("Voici le DataFrame :")
-            #st.write(type(df))
-            #st.write(df)
+
             #----
             my_pipeline = load_pipeline()
             target = my_pipeline.predict(df)
             target = target[0]
-            #st.write(f"target={target}")
+
             #----
             html_pierre ="<div style='color:#E37B01;font-size:30px'>Votre geste : pierre</div>"
             html_feuille ="<div style='color:#AEC90E;font-size:30px'>Votre geste : feuille</div>"
@@ -56,15 +48,9 @@ if picture:
             html_gesture = chifoudict[target]
             texte_gesture = simpledict[target]
             st.write(f"✅ {texte_gesture}")
-            #st.markdown(html_gesture, unsafe_allow_html=True)
+
             #----
             file_name = IMAGE_PATH + "image_" + str(create_key()) + ".png"
-            # file_name = "image_" + str(create_key()) + ".png"
-#            # picture.save(file_name) ?
-#            st.write(f"Écriture ddans le ficjier '{file_name}'")
-#            with open(file_name, "wb") as f:
-#                f.write(picture.getbuffer())
-#                st.success("Saved File")
             img_pil = Image.open(picture)
             img_pil.save(file_name)
             st.write(f"✅ Sauvegarde de la photo '{file_name}'.")

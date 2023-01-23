@@ -1,17 +1,7 @@
 #===============================================================================
 
-import matplotlib.pyplot as plt
 import streamlit as st
-import mediapipe as mp
-import pandas as pd
 from PIL import Image
-import numpy as np
-import random
-import os
-import cv2
-from PIL import Image
-import include
-from include import create_key
 
 #===============================================================================
 
@@ -29,6 +19,4 @@ picture = st.image(chifoumi_image, width=600)
 #===============================================================================
 
 #st.write(create_key())
-#st.write(create_key())
-#st.write(create_key())
-#st.write(create_key())
+
