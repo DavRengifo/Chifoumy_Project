@@ -61,16 +61,21 @@ if picture:
         html_user_feuille ="<div style='color:#AEC90E;font-size:30px'>Votre geste : feuille</div>"
         html_user_ciseaux ="<div style='color:#8B4C89;font-size:30px'>Votre geste : ciseaux</div>"
         #----
+
         user_dict = {0: html_user_pierre, 1: html_user_feuille, 2: html_user_ciseaux}
         user_gesture = user_dict[target]
+
         #----------------
+        # Jeu de l'IA
         machine_play = random.randint(0, 2)
         html_machine_pierre ="<div style='color:#E37B01;font-size:30px'>Geste machine : pierre</div>"
         html_machine_feuille ="<div style='color:#AEC90E;font-size:30px'>Geste machine : feuille</div>"
         html_machine_ciseaux ="<div style='color:#8B4C89;font-size:30px'>Geste machine : ciseaux</div>"
         machine_dict = {0: html_machine_pierre, 1: html_machine_feuille, 2: html_machine_ciseaux}
         machine_gesture = machine_dict[machine_play]
+
         #----------------
+
         # scoring
         result = scoring(machine_play, target)
         if result=="machine":
@@ -84,7 +89,9 @@ if picture:
         file = open("scores.txt", "w")
         file.write(f"{user_score},{machine_score}")
         file.close()
+
         #-------------------------------------------------------------------
+
         # Affichage amélioré
         IMAGE_PIERRE_PATH = "https://www.bejian.fr/chifoumy/images/"
         machine_image_dict = {0: "logo_rock_machine.png",1: "logo_paper_machine.png",2: "logo_scissors_machine.png"}
@@ -111,7 +118,9 @@ if picture:
         <br>
         """
         st.markdown(big_html, unsafe_allow_html=True)
+
         #-------------------------------------------------------------------
+
         if machine_score==MAX_SCORE:
             final_html = f"<div style='color:#FF036A;font-size:30px'>➡️ Victoire de la machine !</div>"
             st.markdown(final_html, unsafe_allow_html=True)

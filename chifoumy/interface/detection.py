@@ -1,15 +1,8 @@
-#import matplotlib.pyplot as plt
 import streamlit as st
 import mediapipe as mp
 import pandas as pd
 from PIL import Image
 import numpy as np
-#import random
-#import os
-#import cv2
-from chifoumy.interface.utils import create_key
-#from chifoumy.ml_logic.registry import load_pipeline
-#from chifoumy.ml_logic.preprocessor import preprocess_features
 
 
 def take_a_picture(key):

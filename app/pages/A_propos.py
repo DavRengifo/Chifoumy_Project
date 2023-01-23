@@ -1,5 +1,3 @@
-#===============================================================================
-
 import streamlit as st
 
 html_title = "<h2 style='color:#FF036A'>Une application proposée par la Chifouteam</h2>"

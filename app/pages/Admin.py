@@ -1,35 +1,8 @@
-#===============================================================================
-
-import random
 import streamlit as st
-from chifoumy.interface.detection import take_a_picture, picture_to_df
-from chifoumy.ml_logic.registry import load_pipeline
-from chifoumy.interface.utils import create_key
 
 #===============================================================================
 
 IMAGE_PATH = "../images/"
-
-#===============================================================================
-
-MAX_SCORE = 3
-
-def scoring(machine_gesture, user_gesture):
-    """
-    0: pierre,
-    1: feuille,
-    2: ciseaux
-    """
-    if user_gesture==machine_gesture:
-        return "null"
-    elif user_gesture==0 and machine_gesture==2:
-        return "user"
-    elif user_gesture == 1 and machine_gesture == 0:
-        return "user"
-    elif user_gesture == 2 and machine_gesture == 1:
-        return "user"
-    else:
-        return "machine"
 
 #===============================================================================
 

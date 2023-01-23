@@ -1,8 +1,5 @@
-#===============================================================================
-
 import random
 import streamlit as st
-from PIL import Image
 from chifoumy.interface.detection import picture_to_df
 from chifoumy.ml_logic.registry import load_pipeline
 #from chifoumy.interface.utils import create_key
@@ -14,23 +11,6 @@ IMAGE_PATH = "../images/"
 #===============================================================================
 
 MAX_SCORE = 3
-
-def scoring(machine_gesture, user_gesture):
-    """
-    0: pierre
-    1: feuille
-    2: ciseaux
-    """
-    if user_gesture==machine_gesture:
-        return "null"
-    elif user_gesture==0 and machine_gesture==2:
-        return "user"
-    elif user_gesture == 1 and machine_gesture == 0:
-        return "user"
-    elif user_gesture == 2 and machine_gesture == 1:
-        return "user"
-    else:
-        return "machine"
 
 def scoring_spock(machine_gesture, user_gesture):
     """
@@ -182,10 +162,14 @@ if picture:
         my_pipeline = load_pipeline(spock=True)
         target = my_pipeline.predict(df)
         target = target[0]
+
         #----------------
+
         # jeu de l'IA
         machine_play = random.randint(0, 4)
+
         #----------------
+
         # scoring
         result = scoring_spock(machine_play, target)
         if result=="machine":
@@ -199,7 +183,9 @@ if picture:
         file = open("scores.txt", "w")
         file.write(f"{user_score},{machine_score}")
         file.close()
+
         #-------------------------------------------------------------------
+
         # Affichage amélioré
         IMAGE_PIERRE_PATH = "https://www.bejian.fr/chifoumy/images/"
         machine_image_dict = {0: "logo_rock_machine.png",1: "logo_paper_machine.png",
@@ -211,7 +197,8 @@ if picture:
         image_user = IMAGE_PIERRE_PATH + human_image_dict[target]
         image_machine = IMAGE_PIERRE_PATH + machine_image_dict[machine_play]
         html_description = description(machine_play, target)
-        #-------
+
+        #---------------------------------------------------------------------
 
         big_html = f"""
         <div style="display:flex;justify-content:center;align-items:center;width:100%;height:100%">
@@ -236,7 +223,9 @@ if picture:
         <br>
         """
         st.markdown(big_html, unsafe_allow_html=True)
+
         #-------------------------------------------------------------------
+        
         if machine_score==MAX_SCORE:
             final_html = f"<div style='color:#FF036A;font-size:30px'>➡️ Victoire de la machine !</div>"
             st.markdown(final_html, unsafe_allow_html=True)
